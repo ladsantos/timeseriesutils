@@ -492,7 +492,8 @@ def get_tds(hdu, index):
     tds_data = fits.getdata(tdsfile, ext=1)
     REF_TIME = fits.getval(tdsfile, 'REF_TIME', ext=1)
     mode_index = np.where((tds_data['OPT_ELEM'] == hdu[0].header['opt_elem']) &
-                          (tds_data['APERTURE'] == hdu[0].header['aperture']) &
+                          (tds_data['CENWAVE'] == hdu[0].header['cenwave']) &
+                          ((tds_data['APERTURE'] == hdu[0].header['aperture']) | (tds_data['APERTURE'] == 'ANY')) &
                           (tds_data['SEGMENT'] == hdu[0].header['segment']))[0]
 
 
